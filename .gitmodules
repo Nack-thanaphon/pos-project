@@ -1,0 +1,6 @@
+[submodule "pos-web"]
+	path = pos-web
+	url = https://github.com/Nack-thanaphon/pos-web.git
+[submodule "pos-api"]
+	path = pos-api
+	url = https://github.com/Nack-thanaphon/pos-api.git

@@ -1,0 +1,42 @@
+replicaCount: 1
+
+image:
+  repository: registry.gitlab.com/contactus.work/pos-api/
+  pullPolicy: Always
+  tag: 'latest'
+  registrySecret: 'gitlab-registry-secret'
+
+ingress:
+  host: "api.contactus.work"
+  path: "/api/v1/(.*)"
+  pathType: Prefix
+  bodySize: '100m'
+
+deploymentConfig:
+  containerPort: 3500
+
+configMap:
+  # HLAB_PORT: 3000
+  NODE_ENV: production
+
+secretMap:
+  POSTGRES_HOST: 103.86.51.166
+  POSTGRES_DB: pos-hypertrade
+  POSTGRES_USER: pos-hypertrade
+  POSTGRES_PORT: 3306
+  POSTGRES_PASSWORD: XTW2Nwpw5uFyytPeWWbj
+
+  GOOGLE_CLIENT_ID: ""
+  GOOGLE_CLIENT_SECRET: ""
+  GOOGLE_REDIRECT_URI: "http://localhost:3000"
+
+  GOOGLE_ACCESS_TOKEN: ""
+  GOOGLE_REFRESH_TOKEN: ""
+
+  JWT_SECRET: "0a06157cb58cc43a7a17354e0b5aef00b5e16f9eceb2e9c53490c8ab80fd5d58"
+  BACKEND_URL: "http://localhost:3500/"
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 12
+  targetCPUUtilizationPercentage: 50
